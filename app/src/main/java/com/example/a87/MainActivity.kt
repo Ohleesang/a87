@@ -40,19 +40,16 @@ class Solution {
     fun solution(n: Int, left: Long, right: Long): IntArray {
         var answer = intArrayOf()
         var arrList = mutableListOf<Int>()
-        var tempList = mutableListOf<Int>()
         //2차원 배열 만들기 <= x 시간복잡도 많이 잡아먹는듯
         var count = 1
         var index = 0
         loop@ for(i in 1..n){
             for(j in 1..n){
-                if(count>=j)
-                    arrList.add(count)
-                else
-                    arrList.add(j)
-
                 if(left<=index && index<=right){
-                    tempList.add(arrList.last())
+                    if(count>=j)
+                        arrList.add(count)
+                    else
+                        arrList.add(j)
                 }
                 else if(index>right) {
                     break@loop
@@ -61,7 +58,7 @@ class Solution {
             }
             count++
         }
-        answer = tempList.toIntArray()
+        answer = arrList.toIntArray()
         return answer
     }
 }
